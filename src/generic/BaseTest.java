@@ -1,4 +1,6 @@
 package generic;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
@@ -15,6 +17,8 @@ public class BaseTest implements IAutoConstant{
 		driver = new FirefoxDriver();
 		String url = Lib.getPropertyValue("URL");
 		driver.get(url);
+		String timeout = Lib.getPropertyValue("ITO");
+		driver.manage().timeouts().implicitlyWait(Long.parseLong(timeout), TimeUnit.SECONDS);
 		
 	}
 	@AfterMethod
